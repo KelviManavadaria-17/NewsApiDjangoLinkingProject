@@ -13,20 +13,80 @@
 
 <body>
     
-    <h1>{{totalResults}}</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed" style="background-color: #1a4564; width: 100%;">
+       
+            <a class="navbar-brand" href="#" >News App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- category  -->
+                <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Category
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for i in categories %}
+                    <a class="dropdown-item" href="{% url 'category' i %}">{{i}}</a>
+                    {% endfor %}
+                   
+                  
+                  </div>
+                </li>
+
+                <!-- languauge  -->
+                 
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown link
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
+
+                    <!-- country  -->
+
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown link
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
+              </ul>
+            </div>
+         
+      </nav>
+    
     <div class="container">
+        <div class="alert alert-info m-5" role="alert" style="align-items: center;">
+           Total News :: {{totalResults}}
+          </div>
             {%for i in attribute%}
-        <div class="card">
+        <div class="card rounded shadow-lg m-2 p-5">
             <h5 class="card-header">{{i.title}}</h5>
             <div class="card-body">
              <div class="row">
                  <div class="col-3">
-                    <img src="{{i.urlToImage}}" alt="" style="height: 180px; width: 180px;">
+                    <img src="{{i.urlToImage}}" alt="" style="height: 180px; width: 180px; border-radius: 15px; box-shadow: 50px;">
                  </div>
                  <div class="col-9">
                     <p class="card-text">{{i.description}}</p>
                  </div>
              </div>
+             <br>
+            
+            <p>Source::  {{i.source.name}}</p>
              <br>
             <a href="{{i.url}}" class="btn btn-primary">Read Full News</a>
             <hr>
@@ -38,8 +98,7 @@
         {%endfor%}
     </div>
    
-    <p>{{i.source.id}}</p>
-    <p>{{i.source.name}}</p>
+    
 
 
     <p>{{i.author}}</p>
